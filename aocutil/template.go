@@ -39,7 +39,7 @@ var _ = declareDay(%[1]d, func(part2 bool, inputReader io.Reader) any {
 })
 
 func day%02[1]dPart1(inputReader io.Reader) any {
-	aocutil.VisitStrings(inputReader, func(v []byte]) {})
+	aocutil.VisitStrings(inputReader, func(v []byte) {})
 
 	panic("no solution")
 }

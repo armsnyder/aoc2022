@@ -4,7 +4,6 @@ import (
 	"bytes"
 	"fmt"
 	"io"
-	"io/ioutil"
 	"reflect"
 	"sort"
 	"strings"
@@ -40,7 +39,7 @@ func Benchmark(b *testing.B) {
 	for _, dayNum := range dayNumbers {
 		b.Run(fmt.Sprintf("Day %02d", dayNum), func(b *testing.B) {
 			input := aocutil.GetInput(dayNum)
-			inputBytes, err := ioutil.ReadAll(input)
+			inputBytes, err := io.ReadAll(input)
 			if err != nil {
 				panic(err)
 			}
