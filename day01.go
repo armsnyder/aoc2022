@@ -8,14 +8,14 @@ import (
 	"github.com/samber/lo"
 )
 
-var _ = declareDay(1, func(part2 bool, inputReader io.Reader) interface{} {
+var _ = declareDay(1, func(part2 bool, inputReader io.Reader) any {
 	if part2 {
 		return day01Part2(inputReader)
 	}
 	return day01Part1(inputReader)
 })
 
-func day01Part1(inputReader io.Reader) interface{} {
+func day01Part1(inputReader io.Reader) any {
 	max := 0
 
 	aocutil.VisitIntGroups(inputReader, func(v []int) {
@@ -25,7 +25,7 @@ func day01Part1(inputReader io.Reader) interface{} {
 	return max
 }
 
-func day01Part2(inputReader io.Reader) interface{} {
+func day01Part2(inputReader io.Reader) any {
 	var top3 [3]int
 
 	aocutil.VisitIntGroups(inputReader, func(v []int) {

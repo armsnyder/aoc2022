@@ -1,12 +1,19 @@
-default: fmt test
+default: build fmt test readme
 
-test:
-	go test .
-
-bench:
-	go test -run=^$$ -bench .
+build:
+	go mod tidy
+	go build ./...
 
 fmt:
 	go run golang.org/x/tools/cmd/goimports -w .
 
-.PHONY: default test fmt
+test:
+	go test .
+
+readme:
+	go run . -b
+
+day?=$(shell TZ='US/Eastern' date +'%d')
+
+bench:
+	go test -benchmem -run=^$$ -bench=Benchmark/Day_$(day) .

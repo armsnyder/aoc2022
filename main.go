@@ -12,11 +12,11 @@ import (
 	"github.com/armsnyder/aoc2022/aocutil"
 )
 
-type dayFn func(part2 bool, inputReader io.Reader) interface{}
+type dayFn func(part2 bool, inputReader io.Reader) any
 
 var days = make(map[int]dayFn)
 
-func declareDay(day int, dayFn dayFn) interface{} {
+func declareDay(day int, dayFn dayFn) any {
 	days[day] = dayFn
 	return nil
 }

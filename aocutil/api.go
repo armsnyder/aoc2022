@@ -48,7 +48,7 @@ func GetInput(day int) io.ReadCloser {
 	return file
 }
 
-func Submit(day int, part2 bool, v interface{}) {
+func Submit(day int, part2 bool, v any) {
 	answer := fmt.Sprint(v)
 
 	solutions, err := os.OpenFile("solutions.txt", os.O_RDWR|os.O_CREATE|os.O_APPEND, 0666)

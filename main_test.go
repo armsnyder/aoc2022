@@ -17,7 +17,7 @@ type dayTest struct {
 	name  string
 	part2 bool
 	input string
-	want  interface{}
+	want  any
 }
 
 func runDayTests(t *testing.T, day int, tests []dayTest) {

@@ -31,21 +31,21 @@ import (
 	"github.com/armsnyder/aoc2022/aocutil"
 )
 
-var _ = declareDay(%[1]d, func(part2 bool, inputReader io.Reader) interface{} {
+var _ = declareDay(%[1]d, func(part2 bool, inputReader io.Reader) any {
 	if part2 {
 		return day%02[1]dPart2(inputReader)
 	}
 	return day%02[1]dPart1(inputReader)
 })
 
-func day%02[1]dPart1(inputReader io.Reader) interface{} {
-	aocutil.VisitStrings(inputReader, func(v string) {})
+func day%02[1]dPart1(inputReader io.Reader) any {
+	aocutil.VisitStrings(inputReader, func(v []byte]) {})
 
 	panic("no solution")
 }
 
-func day%02[1]dPart2(inputReader io.Reader) interface{} {
-	aocutil.VisitStrings(inputReader, func(v string) {})
+func day%02[1]dPart2(inputReader io.Reader) any {
+	aocutil.VisitStrings(inputReader, func(v []byte) {})
 
 	panic("no solution")
 }
