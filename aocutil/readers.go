@@ -2,6 +2,7 @@ package aocutil
 
 import (
 	"bufio"
+	"errors"
 	"io"
 	"strconv"
 	"unicode/utf8"
@@ -112,6 +113,25 @@ func VisitLines(inputReader io.Reader, visitFn func(v []byte)) {
 	scanner := bufio.NewScanner(inputReader)
 	for scanner.Scan() {
 		visitFn(scanner.Bytes())
+	}
+}
+
+func VisitCharactersWhile(inputReader io.Reader, visitFn func(buf []byte) bool) error {
+	var readBuffer [512]byte
+
+	for {
+		bufferLen, err := inputReader.Read(readBuffer[:])
+		if err != nil && !errors.Is(err, io.EOF) {
+			return err
+		}
+
+		if !visitFn(readBuffer[:bufferLen]) {
+			return nil
+		}
+
+		if errors.Is(err, io.EOF) {
+			return err
+		}
 	}
 }
 
