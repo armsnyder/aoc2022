@@ -10,6 +10,7 @@ import (
 	"testing"
 
 	"github.com/armsnyder/aoc2022/aocutil"
+	"github.com/samber/lo"
 )
 
 type dayTest struct {
@@ -31,10 +32,7 @@ func runDayTests(t *testing.T, day int, tests []dayTest) {
 }
 
 func Benchmark(b *testing.B) {
-	dayNumbers := make([]int, 0, len(days))
-	for dayNum := range days {
-		dayNumbers = append(dayNumbers, dayNum)
-	}
+	dayNumbers := lo.Keys(days)
 	sort.Ints(dayNumbers)
 	for _, dayNum := range dayNumbers {
 		b.Run(fmt.Sprintf("Day %02d", dayNum), func(b *testing.B) {
