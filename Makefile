@@ -15,5 +15,7 @@ readme:
 
 day?=$(shell TZ='US/Eastern' date +'%d')
 
+.PHONY: bench
 bench:
-	go test -benchmem -run=^$$ -bench=Benchmark/Day_$(day) .
+	mkdir -p bench
+	go test -benchmem -benchtime=3s -run=^$$ -bench=Benchmark/Day_$(day) | tee bench/$(day).$(shell date +'%s').txt

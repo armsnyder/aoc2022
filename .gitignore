@@ -1,5 +1,4 @@
-inputs
-session.txt
-solutions.txt
-.idea
-*.iml
+/inputs
+/bench
+/session.txt
+/solutions.txt
