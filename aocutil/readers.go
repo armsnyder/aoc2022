@@ -2,6 +2,7 @@ package aocutil
 
 import (
 	"bufio"
+	"bytes"
 	"errors"
 	"io"
 	"strconv"
@@ -87,6 +88,14 @@ func VisitStringGroups(inputReader io.Reader, visitFn func(v []string)) {
 	})
 	if len(group) > 0 {
 		visitFn(group)
+	}
+}
+
+func VisitStringGroupBytes(inputReader io.Reader, visitFn func(v []byte)) {
+	scanner := bufio.NewScanner(inputReader)
+	scanner.Split(ScanStringGroups)
+	for scanner.Scan() {
+		visitFn(scanner.Bytes())
 	}
 }
 
@@ -176,6 +185,22 @@ func ScanCommaSeparated(data []byte, atEOF bool) (advance int, token []byte, err
 	}
 	// Request more data.
 	return start, nil, nil
+}
+
+func ScanStringGroups(data []byte, atEOF bool) (advance int, token []byte, err error) {
+	if atEOF && len(data) == 0 {
+		return 0, nil, nil
+	}
+	if i := bytes.Index(data, []byte{'\n', '\n'}); i >= 0 {
+		// We have a double newline.
+		return i + 2, data[0:i], nil
+	}
+	// If we're at EOF, we have a final, non-terminated line. Return it.
+	if atEOF {
+		return len(data), data, nil
+	}
+	// Request more data.
+	return 0, nil, nil
 }
 
 // AtoiBytes is based on strconv.Atoi() but skips the need to convert to string, thereby reducing
